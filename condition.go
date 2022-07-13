@@ -23,15 +23,14 @@ func main() {
 	} else {
 		fmt.Println("Number is odd")
 	}
+	if 8%4 == 0 {
+		fmt.Println("8 is divisible by 4")
+	}
 
-	if num := 3; num < 10 {
+	if num := 3; num < 10 { // assign first then check conditions
 		fmt.Println("Num is less than 10")
 	} else {
 		fmt.Println("Num is NOT less than 10")
 	}
-
-	// if err != nil {
-
-	// }
 
 }

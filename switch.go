@@ -9,8 +9,8 @@ import (
 func main() {
 	fmt.Println("Switch and case in golang")
 
-	rand.Seed(time.Now().UnixNano())
-	diceNumber := rand.Intn(6) + 1
+	rand.Seed(time.Now().UnixNano()) // random number ganaretor
+	diceNumber := rand.Intn(6) + 1   // between 1 - 6
 	fmt.Println("Value of dice is ", diceNumber)
 
 	switch diceNumber {
@@ -32,4 +32,24 @@ func main() {
 		fmt.Println("What was that!")
 	}
 
+	//condition in switch
+	age := 45
+	switch {
+	case age < 18:
+		fmt.Println("Kid")
+	case age >= 18 && age < 40:
+		fmt.Println("Young")
+	default:
+		fmt.Println("Old")
+	}
+
+	// switch with statements
+	switch age := 29; {
+	case age < 18:
+		fmt.Println("Kid")
+	case age >= 18 && age < 40:
+		fmt.Println("Young")
+	default:
+		fmt.Println("Old")
+	}
 }
