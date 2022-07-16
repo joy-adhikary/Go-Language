@@ -75,7 +75,7 @@ func PerformPostFormRequest() {
 
 	data := url.Values{}
 	data.Add("firstname", "Joy")
-	data.Add("lastname", "choudhary")
+	data.Add("lastname", "Adhikary")
 	data.Add("email", "Joy@go.dev")
 
 	response, err := http.PostForm(myurl, data)
