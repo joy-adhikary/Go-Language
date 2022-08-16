@@ -3,6 +3,21 @@ package main
 import "fmt"
 
 func main() {
+	
+	// sort using key  ... count the number of length(size) thn number thn  latter
+	mp := make(map[string]string)
+	mp["joy0"] = "adhikary"
+	mp["joy1"] = "adhikary"
+	mp["joy"] = "adhikary"
+	mp["joy2"] = "adhikary"
+	mp["joya"] = "adhikary"
+	mp["joyaa"] = "adhikary"
+	
+
+	fmt.Println(mp)
+	
+	// output ==> map[joy:adhikary joy0:adhikary joy1:adhikary joy2:adhikary joya:adhikary joyaa:adhikary]
+
 
 	languages := make(map[string]string) // map  of string-key  string-value
 	// map[key]value
