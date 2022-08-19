@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -35,17 +36,27 @@ func (c *Course) IsEmpty() bool {
 }
 
 func main() {
+	r := mux.NewRouter()
+	r.HandleFunc("/", serveHome).Methods("GET")                 // router r r.HandleFunc("rought", controller).Methods("methods name ")
+	r.HandleFunc("/all", getallcourses).Methods("GET")          // localhost:4000/courses dile ei rought ta show korbe
+	r.HandleFunc("/one/{id}", getonecourse).Methods("GET")      // localhost:4000/courses/{id ta dibo kontar jonno dekhbo}
+	r.HandleFunc("/onec", createonecourse).Methods("POST")      // POST is often used by World Wide Web to send user generated data to the web server or when you upload file.
+	r.HandleFunc("/oneup/{id}", updateonecourse).Methods("PUT") //PUT method is used to update resource available on the server
+	r.HandleFunc("/onede/{id}", deletecourse).Methods("DELETE") // DELETE use for delete somethings form the db
 
+	courses = append(courses, Course{CourseId: "2", CourseName: "ReactJS", CoursePrice: 299, Author: &Author{Fullname: "Hitesh Choudhary", Website: "lco.dev"}, Boss: &Boss{Fullname: "Hitesh", Lastname: "Choudhary"}})
+	courses = append(courses, Course{CourseId: "4", CourseName: "MERN Stack", CoursePrice: 199, Author: &Author{Fullname: "Joy Adhikary", Website: "go.dev"}, Boss: &Boss{Fullname: "JOY", Lastname: "Adhikary"}})
+	log.Fatal(http.ListenAndServe(":4000", r))
 }
 
 func serveHome(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("<h>hello</h>"))
+	w.Write([]byte("<h1>Joy you will be the boss .. just keep working </h1>"))
 }
 
-func getallcourse(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("all the info is here ")
-	w.Header().Set("content-Type ", "application/json")
-	json.NewEncoder(w).Encode(courses)
+func getallcourses(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Get all courses")
+	w.Header().Set("Content-Type", "application/json") // map type key value
+	json.NewEncoder(w).Encode(courses)                 // it convert slice courses into json value
 }
 
 func getonecourse(w http.ResponseWriter, r *http.Request) {
@@ -107,4 +118,19 @@ func updateonecourse(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+}
+
+func deletecourse(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("delete course ")
+	w.Header().Set("content-type ", "application/json")
+
+	params := mux.Vars(r)
+
+	for index, course := range courses {
+		if course.CourseId == params["id"] {
+			courses = append(courses[:index], courses[index+1:]...)
+			json.NewEncoder(w).Encode("sucessfully deleted ")
+			return
+		}
+	}
 }
