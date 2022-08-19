@@ -56,7 +56,7 @@ func PerformPostJsonRequest() {
 		}
 	`)
 
-	response, err := http.Post(myurl, "application/json", requestBody) // creating post request
+	response, err := http.Post(myurl, "application/json", requestBody) // creating post request // kon url a , kon format a  r kake post korbo 
 
 	if err != nil {
 		panic(err)
