@@ -54,4 +54,41 @@ func main() {
 	//its work like [index , index)  0 1    ==> 2 skiped ==>   3 - n    pojontho print korbe .
 	fmt.Println(courses)
 
+	
+	
+	
+	
+	// slice of a struct 
+	
+	
+	
+	type Joy struct {
+	name     string
+	id       int
+	position string
+	salary   int
+       }
+
+func print(a []Joy) {
+
+	for _, value := range a {
+		fmt.Println("Author's Name: ", value.name)
+		fmt.Println("id Name: ", value.id)
+	}
+}
+
+func main() {
+
+	res := []Joy{
+		Joy{
+			name:     "joy",
+			id:       203,
+			position: "CSE",
+			salary:   45000,
+		},
+	}
+	print(res)
+}	
+	
+	
 }
